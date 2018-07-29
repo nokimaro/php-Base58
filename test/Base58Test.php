@@ -1,5 +1,7 @@
 <?php
 
+namespace KryuuCommon\Base58Test;
+
 use KryuuCommon\Base58\Base58;
 use KryuuCommon\Base58\BCMathService;
 use KryuuCommon\Base58\GMPService;
