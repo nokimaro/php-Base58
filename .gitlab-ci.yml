@@ -29,4 +29,6 @@ test:
         - ./vendor/
     script:
     - ls -lah
+    - ls -lah ./vendor
+    - ls -lah ./vendor/bin
     - ./vendor/bin/phpunit
