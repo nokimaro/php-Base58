@@ -1,7 +1,11 @@
 # Base58
 > Note:
+>
 > This is a fork from: https://github.com/stephen-hill/base58php but since its being used in a private project i had to import it to our git repository to stabilize the
 > versioning structure. Please give credit to Stephen Hill for his work.
+
+> REPOSITORY: https://git.ryuu.technology/KryuuCommon/Base58
+> GITHUB: Is mirrored from this repository
 
 Base 58 is a close to the same as the more commonly known Base64, the main difference in Base64 and Base58 is that Base58 is used for crypto currencies, eg, encoding a public key or transactions.
 
