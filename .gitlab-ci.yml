@@ -26,6 +26,7 @@ test:
     stage: test
     artifacts:
         paths:
-        - vendor/
+        - ./vendor/
     script:
+    - ls -lah
     - ./vendor/bin/phpunit
