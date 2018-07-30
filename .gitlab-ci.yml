@@ -21,6 +21,7 @@ build:
     script:
     - composer install
     - ls -lah
+    - ls -lah ./vendor/
     
 test:
     stage: test
