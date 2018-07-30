@@ -1,6 +1,9 @@
+# Base58
 Base 58 is a close to the same as the more commonly known Base64, the main difference in Base64 and Base58 is that Base58 is used for crypto currencies, eg, encoding a public key or transactions.
 
+
 Lets take a look at an example, by encoding the text "0testingWorks=" (decided on this string as its a good representation of the differences):
+
 
 In base64 we get
 
@@ -20,9 +23,9 @@ I have created a Base58 Library for PHP that can be found here; <https://git.ryu
 
 ## Usage
 
-### encoding
 
-```PHP
+### encoding
+```php
 <?php
 
 use KryuuCommon\Base58\Base58;
@@ -31,16 +34,15 @@ $b58 = new Base58();
 $encoded = $b58->encode('0testingWorks='); 
 ```
 
-result
 
+**result:**
 ```
 JpBuDCbgWiyS4HkVihS
 ```
     
 
 ### decoding
-
-```PHP
+```php
 <?php
 
 use KryuuCommon\Base58\Base58;
@@ -49,8 +51,8 @@ $b58 = new Base58();
 $decoded= $b58->decode('JpBuDCbgWiyS4HkVihS');
 ```
 
-result
 
+**result:**
 ```
 0testingWorks=
 ```
