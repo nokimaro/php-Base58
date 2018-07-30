@@ -5,9 +5,6 @@
         "phpunit/phpunit": "4.*"
     },
     "license": "MIT",
-    "config": {
-        "bin-dir": "bin"
-    },
     "autoload": {
         "psr-4": {
             "KryuuCommon\\Base58\\": "src/"
