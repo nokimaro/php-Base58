@@ -6,7 +6,7 @@ use KryuuCommon\Base58\Base58;
 use KryuuCommon\Base58\BCMathService;
 use KryuuCommon\Base58\GMPService;
 
-class Base58Tests extends PHPUnit_Framework_TestCase
+class Base58Tests extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider encodingsProvider
