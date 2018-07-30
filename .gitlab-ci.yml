@@ -1,0 +1,24 @@
+image: registry.git.ryuu.technology/docker/gitlabrunners/phpcomposer:latest
+
+services:
+  - docker:dind
+
+stages:
+- build
+- test
+
+variables:
+#    CONTAINER_IMAGE: $CI_REGISTRY/docker/gitlabrunners/phpcomposer
+#    CONTAINER_IMAGE: registry.git.ryuu.technology/$CI_PROJECT_PATH
+
+before_script:
+
+build:
+    stage: build
+    script:
+    - composer install
+    
+build:
+    stage: test
+    script:
+    - ./vendor/bin/phpunit
