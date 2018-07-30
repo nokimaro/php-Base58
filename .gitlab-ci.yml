@@ -17,12 +17,15 @@ build:
     stage: build
     artifacts:
         paths:
-        - vendor/
-
+        - ./vendor/
     script:
     - composer install
+    - ls -lah
     
 test:
     stage: test
+    artifacts:
+        paths:
+        - vendor/
     script:
     - ./vendor/bin/phpunit
