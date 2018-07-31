@@ -21,7 +21,7 @@ before_script:
 - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
 - eval $(ssh-agent -s)
 - mkdir -p ~/.ssh
-- ssh-keyscan -t rsa git.ryuu.technology >> ~/.ssh/known_hosts
+- ssh-keyscan -p 2200 -t rsa git.ryuu.technology >> ~/.ssh/known_hosts
 - echo -e "$AUTO_TAGGING_KEY" >> ~/.ssh/id_rsa
 - echo -e "Host git.ryuu.technology\n    HostName git.ryuu.technology\n    Port 2200\n    User git\n    IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
 - mkdir -p ~/.ssh
