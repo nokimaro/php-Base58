@@ -10,6 +10,9 @@ stages:
 variables:
 #    CONTAINER_IMAGE: $CI_REGISTRY/docker/gitlabrunners/phpcomposer
 #    CONTAINER_IMAGE: registry.git.ryuu.technology/$CI_PROJECT_PATH
+    VERSION_MAJOR: 0
+    VERSION_MINOR: 0
+    VERSION_PATCH: 0
 
 before_script:
 
@@ -33,3 +36,4 @@ test:
     - ls -lah ./vendor
     - ls -lah ./vendor/bin
     - ./vendor/bin/phpunit --coverage-text --colors=never
+    - git tag -a "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${PIPELINE_ID}" -m "CI Auto Tagging"
