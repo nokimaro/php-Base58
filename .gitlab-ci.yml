@@ -34,7 +34,7 @@ test:
         - ./vendor/
     script:
     - ./vendor/bin/phpunit --coverage-text --colors=never
-    - echo "Tagging version with: v${VERSION}"
+    - echo "Tagging version with v${VERSION}"
     - git config user.email "${GITLAB_USER_EMAIL}"
     - git config user.name "${GITLAB_USER_LOGIN}"
     - git tag -a "v${VERSION}" -m "CI Auto Tagging"
