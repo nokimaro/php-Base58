@@ -38,4 +38,4 @@ test:
     - ./vendor/bin/phpunit --coverage-text --colors=never
     - git config user.email "${GITLAB_USER_EMAIL}"
     - git config user.name "${GITLAB_USER_LOGIN}"
-    - git tag -a "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${PIPELINE_ID}" -m "CI Auto Tagging"
+    - git tag -a "v${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}" -m "CI Auto Tagging"
