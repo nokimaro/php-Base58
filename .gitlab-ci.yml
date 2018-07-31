@@ -37,3 +37,4 @@ test:
     - git config user.email "${GITLAB_USER_EMAIL}"
     - git config user.name "${GITLAB_USER_LOGIN}"
     - git tag -a "v${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}" -m "CI Auto Tagging"
+    - git push
