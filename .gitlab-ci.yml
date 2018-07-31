@@ -17,6 +17,7 @@ variables:
 before_script:
 - echo CI_RUNNER_ID=$CI_RUNNER_ID
 - echo CI_ENVIRONMENT_NAME=$CI_ENVIRONMENT_NAME
+- export VERSION=${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}
 
 build:
     stage: build
@@ -33,8 +34,8 @@ test:
         - ./vendor/
     script:
     - ./vendor/bin/phpunit --coverage-text --colors=never
-    - echo "Tagging version with v${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"
+    - echo "Tagging version with: v${VERSION}"
     - git config user.email "${GITLAB_USER_EMAIL}"
     - git config user.name "${GITLAB_USER_LOGIN}"
-    - git tag -a "v${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}" -m "CI Auto Tagging"
-    - git push
+    - git tag -a "v${VERSION}" -m "CI Auto Tagging"
+    - git push origin "v${VERSION}"
