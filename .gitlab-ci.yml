@@ -32,4 +32,4 @@ test:
     - ls -lah
     - ls -lah ./vendor
     - ls -lah ./vendor/bin
-    - ./vendor/bin/phpunit
+    - ./vendor/bin/phpunit --coverage-text --colors=never
