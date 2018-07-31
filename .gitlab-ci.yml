@@ -34,6 +34,8 @@ after_script:
 
 build:
     stage: build
+    only:
+    - master
     artifacts:
         paths:
         - ./vendor/
@@ -42,6 +44,8 @@ build:
     
 test:
     stage: test
+    only:
+    - master
     artifacts:
         paths:
         - ./vendor/
