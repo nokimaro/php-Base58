@@ -22,7 +22,7 @@ before_script:
 - echo "$AUTO_TAGGING_KEY" | tr -d '\r' | ssh-add - > /dev/null
 - mkdir -p ~/.ssh
 - chmod 700 ~/.ssh
-- git remote set-url --push 
+#- git remote set-url --push 
 - git config user.email "${GITLAB_USER_EMAIL}"
 - git config user.name "${GITLAB_USER_LOGIN}"
 - export
