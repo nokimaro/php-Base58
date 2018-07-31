@@ -13,20 +13,21 @@ variables:
     VERSION_MAJOR: 0
     VERSION_MINOR: 0
     VERSION_PATCH: 0
+    DOMAIN: git.ryuu.technology
+    
 
 before_script:
 - export VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"
-- export CI_PROJECT_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g' | sed 's#/#:2200/#' | sed 's#$#.git#'`
+- export CI_PROJECT_SSH_URL=git@${DOMAIN}:2200${CI_PROJECT_PATH}
 - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
 - eval $(ssh-agent -s)
 - mkdir -p ~/.ssh
-- ssh-keyscan -p 2200 -t rsa git.ryuu.technology >> ~/.ssh/known_hosts
+- ssh-keyscan -p 2200 -t rsa ${DOMAIN} >> ~/.ssh/known_hosts
 - echo -e "$AUTO_TAGGING_KEY" >> ~/.ssh/id_rsa
 - chmod 700 -R ~/.ssh
 - git remote set-url --push origin ${CI_PROJECT_SSH_URL}
 - git config user.email "${GITLAB_USER_EMAIL}"
 - git config user.name "${GITLAB_USER_LOGIN}"
-- export
 
 after_script:
 - rm -Rf ~/.ssh
