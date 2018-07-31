@@ -15,6 +15,8 @@ variables:
     VERSION_PATCH: 0
 
 before_script:
+- echo CI_RUNNER_ID=$CI_RUNNER_ID
+- echo CI_RUNNER_TAGS=$CI_RUNNER_TAGS
 
 build:
     stage: build
