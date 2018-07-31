@@ -18,11 +18,12 @@ variables:
 
 before_script:
 - export VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"
-- export CI_PROJECT_SSH_URL=git@${DOMAIN}:2200${CI_PROJECT_PATH}
+- export CI_PROJECT_SSH_URL=git@${DOMAIN}:${CI_PROJECT_PATH}
 - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
 - eval $(ssh-agent -s)
 - mkdir -p ~/.ssh
 - ssh-keyscan -p 2200 -t rsa ${DOMAIN} >> ~/.ssh/known_hosts
+- echo -e "Host ${DOMAIN}\n    HostName ${DOMAIN}\n    Port 2200\n    User git\n    IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
 - echo -e "$AUTO_TAGGING_KEY" >> ~/.ssh/id_rsa
 - chmod 700 -R ~/.ssh
 - git remote set-url --push origin ${CI_PROJECT_SSH_URL}
