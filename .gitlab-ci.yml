@@ -55,4 +55,4 @@ test:
     - git config user.email "${GITLAB_USER_EMAIL}"
     - git config user.name "${GITLAB_USER_LOGIN}"
     - git tag -a "v${VERSION}" -m "CI Auto Tagging"
-    - git push origin v${VERSION}
+    - GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa' git push origin v${VERSION}
