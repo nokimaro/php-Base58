@@ -17,13 +17,14 @@ variables:
 before_script:
 - echo $CI_PROJECT_PATH
 - export VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"##
-- export CI_PROJECT_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g' | sed 's#/#:#' | sed 's#$#.git#'`
+- export CI_PROJECT_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g' | sed 's#/#:2200/#' | sed 's#$#.git#'`
 - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
 - eval $(ssh-agent -s)
 - mkdir -p ~/.ssh
 - echo "$AUTO_TAGGING_KEY" | tr -d '\r' | ssh-add -
 - mkdir -p ~/.ssh
 - chmod 700 ~/.ssh
+- ls -lah ~/.ssh/
 - git remote set-url --push origin $CI_PROJECT_SSH_URL
 - git remote -v
 - git config user.email "${GITLAB_USER_EMAIL}"
