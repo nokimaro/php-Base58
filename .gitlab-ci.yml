@@ -15,24 +15,18 @@ variables:
     VERSION_PATCH: 0
 
 before_script:
-- echo $CI_PROJECT_PATH
 - export VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"
-- export CI_PROJECT_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g' | sed 's#/#:#' | sed 's#$#.git#'`
+- export CI_PROJECT_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g' | sed 's#/#:2200/#' | sed 's#$#.git#'`
 - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
 - eval $(ssh-agent -s)
 - mkdir -p ~/.ssh
 - ssh-keyscan -p 2200 -t rsa git.ryuu.technology >> ~/.ssh/known_hosts
 - echo -e "$AUTO_TAGGING_KEY" >> ~/.ssh/id_rsa
-- echo -e "Host git.ryuu.technology\n    HostName git.ryuu.technology\n    Port 2200\n    User git\n    IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-- mkdir -p ~/.ssh
 - chmod 700 -R ~/.ssh
-- ls -lah ~/.ssh/
-- cat ~/.ssh/id_rsa
-- cat ~/.ssh/config
-- git remote set-url --push origin $CI_PROJECT_SSH_URL
-- git remote -v
+- git remote set-url --push origin ${CI_PROJECT_SSH_URL}
 - git config user.email "${GITLAB_USER_EMAIL}"
 - git config user.name "${GITLAB_USER_LOGIN}"
+- export
 
 after_script:
 - rm -Rf ~/.ssh
@@ -52,8 +46,5 @@ test:
         - ./vendor/
     script:
     - ./vendor/bin/phpunit --coverage-text --colors=never
-    - echo "Tagging version with v${VERSION}"
-    - git config user.email "${GITLAB_USER_EMAIL}"
-    - git config user.name "${GITLAB_USER_LOGIN}"
     - git tag -a "v${VERSION}" -m "CI Auto Tagging"
-    - GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa' git push origin v${VERSION}
+    - git push origin v${VERSION}
