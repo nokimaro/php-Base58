@@ -16,7 +16,7 @@ variables:
 
 before_script:
 - echo $CI_PROJECT_PATH
-- export VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"##
+- export VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"
 - export CI_PROJECT_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g' | sed 's#/#:/#' | sed 's#$#.git#'`
 - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
 - eval $(ssh-agent -s)
