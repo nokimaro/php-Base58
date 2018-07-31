@@ -17,20 +17,20 @@ variables:
 before_script:
 - echo $CI_PROJECT_PATH
 - export VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}+${CI_PIPELINE_ID}"##
+- export CI_PROJECT_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g'`
 - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
 - eval $(ssh-agent -s)
 - echo "$AUTO_TAGGING_KEY" | tr -d '\r' | ssh-add - > /dev/null
 - mkdir -p ~/.ssh
 - chmod 700 ~/.ssh
-#- git remote set-url --push 
+- git remote set-url --push $CI_PROJECT_SSH_URL
 - git config user.email "${GITLAB_USER_EMAIL}"
 - git config user.name "${GITLAB_USER_LOGIN}"
-- export
-- export CI_SSH_URL=`echo $CI_PROJECT_URL | sed 's#http[s]://#git@#g'`
-- export
 
 after_script:
 - rm -Rf ~/.ssh
+- docker stop $HOSTNAME
+- docker rm $HOSTNAME
 
 build:
     stage: build
