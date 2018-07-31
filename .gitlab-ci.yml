@@ -25,6 +25,7 @@ before_script:
 - mkdir -p ~/.ssh
 - chmod 700 ~/.ssh
 - ls -lah ~/.ssh/
+- ls -lah ~/.ssh/id_rsa
 - git remote set-url --push origin $CI_PROJECT_SSH_URL
 - git remote -v
 - git config user.email "${GITLAB_USER_EMAIL}"
